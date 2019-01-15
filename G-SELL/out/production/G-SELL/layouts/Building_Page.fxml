@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2012, 2014, Oracle and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import javafx.scene.web.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox prefHeight="600.0" prefWidth="800.0" styleClass="theme" stylesheets="@css/sample.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Building_Page_Controller">
+   <children>
+      <HBox VBox.vgrow="NEVER">
+         <children>
+            <Label prefHeight="26.0" prefWidth="402.0" text="Pagina di monitoraggio edificio">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER_RIGHT" spacing="15.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Button fx:id="setValues_button" mnemonicParsing="false" text="Settaggio Valori" />
+                  <Button fx:id="alert_button" mnemonicParsing="false" text="Segnala Autorità" />
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </HBox>
+         </children>
+         <VBox.margin>
+            <Insets bottom="15.0" left="10.0" right="15.0" top="20.0" />
+         </VBox.margin>
+      </HBox>
+      <SplitPane dividerPositions="0.34" VBox.vgrow="ALWAYS">
+         <items>
+            <ListView fx:id="room_list" prefHeight="200.0" prefWidth="200.0" styleClass="darkList" />
+            <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
+              <items>
+                  <TableView fx:id="table" prefHeight="539.0" prefWidth="430.0">
+                    <columns>
+                      <TableColumn fx:id="colStatus" prefWidth="57.0" text="Status" />
+                      <TableColumn fx:id="colTemperatura" prefWidth="92.0" text="Temperatura" />
+                        <TableColumn fx:id="colUmidità" prefWidth="65.0" text="Umidità" />
+                        <TableColumn fx:id="colPressione" prefWidth="74.0" text="Pressione" />
+                        <TableColumn fx:id="colLuminosità" prefWidth="87.0" text="Luminosità" />
+                        <TableColumn fx:id="colMalfunzionamenti" prefWidth="149.0" text="Malfunzionamenti" />
+                    </columns>
+                  </TableView>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+              </items>
+            </SplitPane>
+         </items>
+      </SplitPane>
+   </children>
+</VBox>
