@@ -48,11 +48,11 @@ public class City_Page_Controller {
             while (true) {
                 try {
                     String username = getUtente();
-                    System.out.println(username);
                     String color;
                     Etichetta e = new Etichetta();
                     AggiornaCitta a = new AggiornaCitta(username, "Citta");
                     Map<String, Integer> map = a.run();
+                    int i = 0;
                     for (Map.Entry<String, Integer> entry : map.entrySet()) {
                         switch (entry.getValue()) {
                             case 0:
@@ -76,13 +76,13 @@ public class City_Page_Controller {
                         if (!inizializzato) {
                             e.crea(entry.getKey(), color);
                             zone_list.getItems().add(Etichetta.getButton());
-                            System.out.println("OK");
 
                         }
                         else {
-                            e.setColor(color);
-                            System.out.println("OK");
+                            System.out.println(color);
+                            zone_list.getItems().get(i).setStyle("-fx-background-color: "+color);
                         }
+                        i++;
                     }
                     inizializzato = true;
                 } catch (Exception e) {
@@ -90,6 +90,7 @@ public class City_Page_Controller {
                 }
 
                 try {
+
                     sleep(10000);
                 } catch (Exception ex) {
                     ex.getStackTrace();

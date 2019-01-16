@@ -78,7 +78,10 @@
                         <TableColumn fx:id="colMalfunzionamenti" prefWidth="149.0" text="Malfunzionamenti" />
                     </columns>
                   </TableView>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                     <children>
+                        <Label fx:id="stanzaCliccata" alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="36.0" prefWidth="70.0" />
+                     </children></AnchorPane>
               </items>
             </SplitPane>
          </items>

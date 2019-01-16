@@ -1,11 +1,12 @@
 package controllers;
 
 import controllers.priorityController.AggiornaCitta;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.geometry.Pos;
+import javafx.scene.control.*;
+import javafx.scene.text.Font;
 import model.Etichetta;
 import model.Stanza;
 import java.util.Map;
@@ -15,6 +16,9 @@ import static controllers.Login_Page_Controller.getUtente;
 import static DAO.TestStanzeGet.getStanze;
 
 public class Building_Page_Controller {
+
+    @FXML   //fx:id="room_list"
+    private Label stanzaCliccata;
 
     @FXML   //fx:id="room_list"
     private ListView<Button> room_list;
@@ -52,6 +56,9 @@ public class Building_Page_Controller {
         a.start();
     }
 
+    public static String getNomeStanza(){
+        return stanzaCliccata.getText();
+    }
 
     public class Aggiornamento extends Thread {
         boolean inizializzato = false;
@@ -59,11 +66,11 @@ public class Building_Page_Controller {
             while (true) {
                 try {
                     String username = getUtente();
-                    System.out.println(username);
                     String color;
                     Etichetta e = new Etichetta();
                     AggiornaCitta a = new AggiornaCitta(username, "Edificio");
                     Map<String, Integer> map = a.run();
+                    int i = 0;
                     for (Map.Entry<String, Integer> entry : map.entrySet()) {
                         switch (entry.getValue()) {
                             case 0:
@@ -85,15 +92,27 @@ public class Building_Page_Controller {
                                 color = "VERDE";
                         }
                         if (!inizializzato) {
-                            e.crea(entry.getKey(), color);
-                            room_list.getItems().add(Etichetta.getButton());
-                            System.out.println("OK");
+                            Button b = new Button();
+                            b.setStyle("-fx-background-color: " + color);
+                            b.setPrefSize(230, 60);
+                            b.setFont(Font.font(24));
+                            b.setText(entry.getKey());
+                            b.setAlignment(Pos.CENTER_LEFT);
+                            b.setOnAction(new EventHandler<ActionEvent>() {
+                                @Override
+                                public void handle(ActionEvent e) {
+                                    stanzaCliccata.setText(b.getText());
+                                    //System.out.println(b.getText());
+                                }
+                            });
+                            room_list.getItems().add(b);
 
                         }
                         else {
-                            e.setColor(color);
-                            System.out.println("OK");
+                            System.out.println(color);
+                            room_list.getItems().get(i).setStyle("-fx-background-color: "+color);
                         }
+                        i++;
                     }
                     inizializzato = true;
                 } catch (Exception e) {
@@ -101,6 +120,7 @@ public class Building_Page_Controller {
                 }
 
                 try {
+
                     sleep(10000);
                 } catch (Exception ex) {
                     ex.getStackTrace();

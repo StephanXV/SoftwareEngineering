@@ -65,7 +65,7 @@
       </HBox>
       <SplitPane dividerPositions="0.34" VBox.vgrow="ALWAYS">
          <items>
-            <ListView fx:id="room_list" prefHeight="200.0" prefWidth="200.0" styleClass="darkList" />
+            <ListView fx:id="room_list" prefHeight="200.0" prefWidth="200.0" styleClass="theme" />
             <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
               <items>
                   <TableView fx:id="table" prefHeight="539.0" prefWidth="430.0">
@@ -78,7 +78,10 @@
                         <TableColumn fx:id="colMalfunzionamenti" prefWidth="149.0" text="Malfunzionamenti" />
                     </columns>
                   </TableView>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                     <children>
+                        <Label fx:id="stanzaCliccata" alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="36.0" prefWidth="70.0" />
+                     </children></AnchorPane>
               </items>
             </SplitPane>
          </items>

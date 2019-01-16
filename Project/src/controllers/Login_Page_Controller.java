@@ -9,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.Gestore;
-
 import static java.lang.Thread.sleep;
 import static DAO.LoginDAO.getUser;
 
