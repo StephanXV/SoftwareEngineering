@@ -76,8 +76,7 @@ public class SetValues_Page_Controller {
 
     @FXML
     void initialize(){
-        information.setStyle("-fx-text-fill: GREEN;");
-        information.setStyle("-fx-font-size: 16px;");
+        information.setStyle("-fx-text-fill: LIME; -fx-font-size: 16px;");
         stanza = Building_Page_Controller.getNomeStanza();
         ArrayList<String> list = new ArrayList<String>(getValoriAssociati(stanza));
         min_Temp.setText(list.get(0));

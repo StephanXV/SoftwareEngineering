@@ -1,6 +1,8 @@
 package controllers;
 
 import controllers.priorityController.AggiornaCitta;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -8,16 +10,24 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import model.Etichetta;
+import model.SensoreTabella;
 import model.Stanza;
+import model.StanzaTabella;
+
 import java.util.Map;
 
+import static DAO.TestCreaListaSensori.creaListSensori;
+import static DAO.TestMedia.average;
 import static controllers.Login_Page_Controller.getUtente;
 
 public class Building_Page_Controller {
 
+    private static boolean notEmpty = false;
     private static Stanza stanza = new Stanza();
 
     @FXML   //fx:id="room_list"
@@ -36,28 +46,44 @@ public class Building_Page_Controller {
     private Button alert_button;
 
     @FXML   //  fx:id="colStatus"
-    private TableColumn<Stanza, String> colStatus; // Value injected by FXMLLoader
+    private TableColumn<StanzaTabella, String> colNome; // Value injected by FXMLLoader
 
     @FXML   //  fx:id="colTemperatura"
-    private TableColumn<Stanza, Double> colTemperatura; // Value injected by FXMLLoader
+    private TableColumn<StanzaTabella, Double> colTemperatura; // Value injected by FXMLLoader
 
     @FXML   //  fx:id="colUmidità"
-    private TableColumn<Stanza, Double> colUmidità; // Value injected by FXMLLoader
+    private TableColumn<StanzaTabella, Double> colUmidità; // Value injected by FXMLLoader
 
     @FXML   //  fx:id="colPressione"
-    private TableColumn<Stanza, Integer> colPressione; // Value injected by FXMLLoader
+    private TableColumn<StanzaTabella, Integer> colPressione; // Value injected by FXMLLoader
 
     @FXML   //  fx:id="colLuminosità"
-    private TableColumn<Stanza, Integer> colLuminosità; // Value injected by FXMLLoader
-
-    @FXML   //  fx:id="colMalfunzionamenti"
-    private TableColumn<Stanza, Integer> colMalfunzionamenti; // Value injected by FXMLLoader
+    private TableColumn<StanzaTabella, Integer> colLuminosità; // Value injected by FXMLLoader
 
     @FXML   // fx:id="table"
-    private TableView<Stanza> table;
+    private TableView<StanzaTabella> table;
+
+    @FXML
+    private TableView<SensoreTabella> sensorTable;
+
+    @FXML   //  fx:id="colCodice"
+    private TableColumn<SensoreTabella, Double> colCodice; // Value injected by FXMLLoader
+
+    @FXML   //  fx:id="colTipo"
+    private TableColumn<SensoreTabella, Integer> colTipo; // Value injected by FXMLLoader
+
+    @FXML   //  fx:id="colValore"
+    private TableColumn<SensoreTabella, Double> colValore; // Value injected by FXMLLoader
+
+    @FXML   //  fx:id="colStato"
+    private TableColumn<SensoreTabella,Integer> colStato; // Value injected by FXMLLoader
+
+    @FXML   //  fx:id="colAnomalia"
+    private TableColumn<SensoreTabella,String> colAnomalia; // Value injected by FXMLLoader
 
     @FXML
     void initialize() {
+
         Aggiornamento a = new Aggiornamento();
         a.start();
     }
@@ -83,6 +109,21 @@ public class Building_Page_Controller {
 
         } catch (Exception e) {
             System.out.println("Can't load SetValues Page");
+        }
+    }
+
+    @FXML
+    void alert_ButtonIsFired(ActionEvent event){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("../layouts/Alert_Page.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 400, 400);
+            Stage stage = new Stage();
+            stage.setTitle("Allerta Autorità");
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            System.out.println("Can't load Alert Page");
         }
     }
 
@@ -120,19 +161,41 @@ public class Building_Page_Controller {
                         if (!inizializzato) {
                             Button b = new Button();
                             b.setStyle("-fx-background-color: " + color);
-                            b.setPrefSize(230, 60);
+                            b.setPrefSize(320, 60);
                             b.setFont(Font.font(24));
                             b.setText(entry.getKey());
                             b.setAlignment(Pos.CENTER_LEFT);
                             b.setOnAction(new EventHandler<ActionEvent>() {
                                 @Override
                                 public void handle(ActionEvent e) {
-                                    errors.setText("");
-                                    stanzaCliccata.setText(b.getText());
-                                    stanza.setRoom_name(stanzaCliccata.getText());
-                                    //System.out.println(b.getText());
-                                }
-                            });
+                                    try{
+                                        if(notEmpty)
+                                            table.getItems().remove(table.getItems().get(0));
+                                        errors.setText("");
+                                        stanzaCliccata.setText("Hai selezionato la stanza: "+b.getText());
+                                        stanza.setRoom_name(b.getText());
+                                        StanzaTabella st = average(creaListSensori(stanza.getRoom_name()));
+                                        st.setNome(b.getText());
+                                        colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+                                        colTemperatura.setCellValueFactory(new PropertyValueFactory<>("avg_temp"));
+                                        colUmidità.setCellValueFactory(new PropertyValueFactory<>("avg_um"));
+                                        colPressione.setCellValueFactory(new PropertyValueFactory<>("avg_pres"));
+                                        colLuminosità.setCellValueFactory(new PropertyValueFactory<>("avg_lum"));
+                                        ObservableList<StanzaTabella> list = FXCollections.observableArrayList(st);
+                                        table.setItems(list);
+                                        notEmpty=true;
+
+                                        colCodice.setCellValueFactory(new PropertyValueFactory<>("codice1"));
+                                        colTipo.setCellValueFactory(new PropertyValueFactory<>("tipo1"));
+                                        colValore.setCellValueFactory(new PropertyValueFactory<>("last_data1"));
+                                        colStato.setCellValueFactory(new PropertyValueFactory<>("state1"));
+                                        colAnomalia.setCellValueFactory(new PropertyValueFactory<>("anomalia"));
+                                        ObservableList<SensoreTabella> listSensori = FXCollections.observableArrayList(creaListSensori(stanza.getRoom_name()));
+                                        sensorTable.setItems(listSensori);
+                                    } catch (Exception ex){
+                                        ex.getStackTrace();
+                                    }
+                            }});
                             room_list.getItems().add(b);
 
                         }

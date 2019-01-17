@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="400.0" stylesheets="@css/sample.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Alert_Page_Controller">
+   <children>
+      <Label layoutX="100.0" layoutY="102.0" text="Vigili del Fuoco" />
+      <Label layoutX="100.0" layoutY="158.0" text="Polizia" />
+      <Label layoutX="100.0" layoutY="217.0" text="Carabinieri" />
+      <Label layoutX="98.0" layoutY="274.0" text="Ambulanza" />
+      <Label layoutX="264.0" layoutY="97.0" text="115">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="264.0" layoutY="153.0" text="113">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="264.0" layoutY="212.0" text="112">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="264.0" layoutY="269.0" text="118">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

@@ -40,7 +40,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox prefHeight="600.0" prefWidth="800.0" styleClass="theme" stylesheets="@css/sample.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Building_Page_Controller">
+<VBox prefHeight="800.0" prefWidth="1000.0" styleClass="theme" stylesheets="@css/sample.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Building_Page_Controller">
    <children>
       <HBox VBox.vgrow="NEVER">
          <children>
@@ -52,7 +52,7 @@
             <HBox alignment="CENTER_RIGHT" spacing="15.0" HBox.hgrow="ALWAYS">
                <children>
                   <Button fx:id="setValues_button" mnemonicParsing="false" onAction="#setValues_ButtonIsFired" text="Settaggio Valori" />
-                  <Button fx:id="alert_button" mnemonicParsing="false" text="Segnala Autorità" />
+                  <Button fx:id="alert_button" mnemonicParsing="false" onAction="#alert_ButtonIsFired" text="Segnala Autorità" />
                </children>
                <HBox.margin>
                   <Insets />
@@ -66,21 +66,33 @@
       <SplitPane dividerPositions="0.3475" VBox.vgrow="ALWAYS">
          <items>
             <ListView fx:id="room_list" prefHeight="200.0" prefWidth="200.0" styleClass="darkList" />
-            <SplitPane dividerPositions="0.6784386617100372" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
+            <SplitPane dividerPositions="0.8644986449864499" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
               <items>
-                  <TableView fx:id="table" prefHeight="539.0" prefWidth="430.0">
-                    <columns>
-                      <TableColumn fx:id="colStatus" prefWidth="57.0" text="Status" />
-                      <TableColumn fx:id="colTemperatura" prefWidth="92.0" text="Temperatura" />
-                        <TableColumn fx:id="colUmidità" prefWidth="65.0" text="Umidità" />
-                        <TableColumn fx:id="colPressione" prefWidth="74.0" text="Pressione" />
-                        <TableColumn fx:id="colLuminosità" prefWidth="87.0" text="Luminosità" />
-                        <TableColumn fx:id="colMalfunzionamenti" prefWidth="149.0" text="Malfunzionamenti" />
-                    </columns>
-                  </TableView>
+                  <SplitPane dividerPositions="0.1892744479495268" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
+                    <items>
+                        <TableView fx:id="table" prefHeight="539.0" prefWidth="430.0">
+                          <columns>
+                            <TableColumn fx:id="colNome" prefWidth="113.0" text="Nome stanza" />
+                            <TableColumn fx:id="colTemperatura" prefWidth="149.0" text="Temperatura media" />
+                              <TableColumn fx:id="colUmidità" prefWidth="118.0" text="Umidità media" />
+                              <TableColumn fx:id="colPressione" prefWidth="130.0" text="Pressione media" />
+                              <TableColumn fx:id="colLuminosità" prefWidth="138.0" text="Luminosità media" />
+                          </columns>
+                        </TableView>
+                        <TableView fx:id="sensorTable" prefHeight="200.0" prefWidth="200.0">
+                          <columns>
+                            <TableColumn fx:id="colCodice" prefWidth="75.0" text="Codice" />
+                            <TableColumn fx:id="colTipo" prefWidth="75.0" text="Tipo" />
+                              <TableColumn fx:id="colValore" prefWidth="115.0" text="Valore rilevato" />
+                              <TableColumn fx:id="colStato" prefWidth="170.0" text="Stato di funzionamento" />
+                              <TableColumn fx:id="colAnomalia" minWidth="6.0" prefWidth="88.0" text="Anomalia" />
+                          </columns>
+                        </TableView>
+                    </items>
+                  </SplitPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                      <children>
-                        <Label fx:id="stanzaCliccata" alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="36.0" prefWidth="70.0" />
+                        <Label fx:id="stanzaCliccata" layoutX="14.0" layoutY="14.0" prefHeight="36.0" prefWidth="195.0" />
                         <Label fx:id="errors" layoutX="14.0" layoutY="50.0" prefHeight="36.0" prefWidth="195.0" styleClass="error" />
                      </children></AnchorPane>
               </items>

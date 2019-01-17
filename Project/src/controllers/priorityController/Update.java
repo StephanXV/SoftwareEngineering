@@ -7,7 +7,6 @@ import DAO.TestStanza;
 import model.Stanza;
 
 public class Update  {
-	 private int step;
 	 private int priorita1;
 	 private int id_stanza;
 	 private String room_name;
@@ -20,8 +19,6 @@ public class Update  {
 	    CheckPriorityRoom priorita = new CheckPriorityRoom(); 
 	    priorita1 = priorita.priorityCheck(stanza);
         room_name=stanza.getRoom_name();
-        System.out.println("La priorità della " + stanza.getRoom_name() + " è "+getPriorita1());
-
 	 }
 	 
 
