@@ -4,21 +4,27 @@ import controllers.priorityController.AggiornaCitta;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 import model.Etichetta;
 import model.Stanza;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 import static controllers.Login_Page_Controller.getUtente;
-import static DAO.TestStanzeGet.getStanze;
 
 public class Building_Page_Controller {
 
+    private static Stanza stanza = new Stanza();
+
     @FXML   //fx:id="room_list"
     private Label stanzaCliccata;
+
+    @FXML   //fx:id="room_list"
+    private Label errors;
 
     @FXML   //fx:id="room_list"
     private ListView<Button> room_list;
@@ -56,8 +62,28 @@ public class Building_Page_Controller {
         a.start();
     }
 
-    public static String getNomeStanza(){
-        return stanzaCliccata.getText();
+    public Label getStanzaCliccata(){
+        return stanzaCliccata;
+    }
+
+    @FXML
+    void setValues_ButtonIsFired(ActionEvent event){
+        try {
+            if (stanzaCliccata.getText() == "")
+                errors.setText("Seleziona prima una stanza!");
+            else {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("../layouts/SetValues_Page.fxml"));
+                Scene scene = new Scene(fxmlLoader.load(), 600, 600);
+                Stage stage = new Stage();
+                stage.setTitle(stanzaCliccata.getText());
+                stage.setScene(scene);
+                stage.show();
+            }
+
+        } catch (Exception e) {
+            System.out.println("Can't load SetValues Page");
+        }
     }
 
     public class Aggiornamento extends Thread {
@@ -101,7 +127,9 @@ public class Building_Page_Controller {
                             b.setOnAction(new EventHandler<ActionEvent>() {
                                 @Override
                                 public void handle(ActionEvent e) {
+                                    errors.setText("");
                                     stanzaCliccata.setText(b.getText());
+                                    stanza.setRoom_name(stanzaCliccata.getText());
                                     //System.out.println(b.getText());
                                 }
                             });
@@ -127,5 +155,8 @@ public class Building_Page_Controller {
                 }
             }
         }
+    }
+    public static String getNomeStanza(){
+        return stanza.getRoom_name();
     }
 }

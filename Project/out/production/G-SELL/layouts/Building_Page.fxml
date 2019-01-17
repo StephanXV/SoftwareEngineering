@@ -51,7 +51,7 @@
             </Label>
             <HBox alignment="CENTER_RIGHT" spacing="15.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Button fx:id="setValues_button" mnemonicParsing="false" text="Settaggio Valori" />
+                  <Button fx:id="setValues_button" mnemonicParsing="false" onAction="#setValues_ButtonIsFired" text="Settaggio Valori" />
                   <Button fx:id="alert_button" mnemonicParsing="false" text="Segnala Autorità" />
                </children>
                <HBox.margin>
@@ -63,10 +63,10 @@
             <Insets bottom="15.0" left="10.0" right="15.0" top="20.0" />
          </VBox.margin>
       </HBox>
-      <SplitPane dividerPositions="0.34" VBox.vgrow="ALWAYS">
+      <SplitPane dividerPositions="0.3475" VBox.vgrow="ALWAYS">
          <items>
-            <ListView fx:id="room_list" prefHeight="200.0" prefWidth="200.0" styleClass="theme" />
-            <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
+            <ListView fx:id="room_list" prefHeight="200.0" prefWidth="200.0" styleClass="darkList" />
+            <SplitPane dividerPositions="0.6784386617100372" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
               <items>
                   <TableView fx:id="table" prefHeight="539.0" prefWidth="430.0">
                     <columns>
@@ -81,6 +81,7 @@
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                      <children>
                         <Label fx:id="stanzaCliccata" alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="36.0" prefWidth="70.0" />
+                        <Label fx:id="errors" layoutX="14.0" layoutY="50.0" prefHeight="36.0" prefWidth="195.0" styleClass="error" />
                      </children></AnchorPane>
               </items>
             </SplitPane>
