@@ -8,6 +8,8 @@ import DAO.TestValoriAss;
 
 public class Valori {
 	
+	private int id;
+	
 	private double min_temp;
 	private double max_temp;
 	
@@ -22,7 +24,8 @@ public class Valori {
 	
 	private Map<String, Double> value = new TreeMap<String, Double>();
 	
-	public Valori() throws SQLException {
+	public Valori(int id) throws SQLException {
+		this.id=id;
 		this.min_temp = 15.0;
 		this.max_temp = 23.0;
 		this.min_lum = 300.0;
@@ -31,7 +34,7 @@ public class Valori {
 		this.max_pres = 1500.0;
 		this.min_hum = 30.0;
 		this.max_hum = 70.0;
-		TestValoriAss.registraValoriAssociati(this.min_temp, this.max_temp, this.min_lum, this.max_lum, this.min_pres, this.max_pres, this.min_hum, this.max_hum);
+		TestValoriAss.registraValoriAssociati(this.id,this.min_temp, this.max_temp, this.min_lum, this.max_lum, this.min_pres, this.max_pres, this.min_hum, this.max_hum);
 	}
 
 
