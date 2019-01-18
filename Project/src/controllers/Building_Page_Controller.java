@@ -19,8 +19,10 @@ import model.SensoreTabella;
 import model.Stanza;
 import model.StanzaTabella;
 
+import java.sql.SQLException;
 import java.util.Map;
 
+import static DAO.BuildingDAO.getEdificioMonitorato;
 import static DAO.TestCreaListaSensori.creaListSensori;
 import static DAO.TestMedia.average;
 import static controllers.Login_Page_Controller.getUtente;
@@ -32,6 +34,9 @@ public class Building_Page_Controller {
 
     @FXML   //fx:id="room_list"
     private Label stanzaCliccata;
+
+    @FXML   //fx:id="room_list"
+    private Label titolo;
 
     @FXML   //fx:id="room_list"
     private Label errors;
@@ -83,6 +88,11 @@ public class Building_Page_Controller {
 
     @FXML
     void initialize() {
+        try {
+            titolo.setText("  Edificio visualizzato: " +getEdificioMonitorato(getUtente()));;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         Aggiornamento a = new Aggiornamento();
         a.start();
@@ -134,7 +144,6 @@ public class Building_Page_Controller {
                 try {
                     String username = getUtente();
                     String color;
-                    Etichetta e = new Etichetta();
                     AggiornaCitta a = new AggiornaCitta(username, "Edificio");
                     Map<String, Integer> map = a.run();
                     int i = 0;
