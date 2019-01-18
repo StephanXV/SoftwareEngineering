@@ -37,11 +37,12 @@ public class AvvioSensori {
 		}
 		
 		System.out.println("zone e utenti inseriti");
-		z=1;
+		
 		for (i=1;i<=750;i++) {
-			if (z % 10 == 0) z++;
 			DAO.InsertUtente.registraDati(i, "Mario", "Rossi", ""+i, "Edificio", "utente"+i, "utente");
 			DAO.InsertEdificio.registraDati(i, "edificio"+i, i, z);
+			if (i % 10 == 0) z++;
+			System.out.println(z);
 		}
 		
 		System.out.println("edifici e utenti inseriti");	
