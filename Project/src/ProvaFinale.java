@@ -38,7 +38,7 @@ public static void main (String[] args) throws Exception {
 		}
 		
 		System.out.println("edifici e utenti inseriti");	
-
+        z=1;
 		for (i=1;i<=tot;i++) {
 			DAO.InsertStanza.registraDati(i, "stanza"+i, (i-1) % 2, i, "low", z );
 			if (i % 10 == 0) z++;
