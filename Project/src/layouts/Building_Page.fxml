@@ -44,7 +44,7 @@
    <children>
       <HBox VBox.vgrow="NEVER">
          <children>
-            <Label prefHeight="26.0" prefWidth="402.0" text="Pagina di monitoraggio edificio">
+            <Label fx:id="titolo" prefHeight="27.0" prefWidth="441.0">
                <font>
                   <Font size="18.0" />
                </font>

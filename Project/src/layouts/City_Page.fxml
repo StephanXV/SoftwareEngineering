@@ -8,11 +8,11 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox prefHeight="600.0" prefWidth="800.0" styleClass="theme" stylesheets="@css/sample.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.City_Page_Controller">
+<VBox prefHeight="800.0" prefWidth="1000.0" styleClass="theme" stylesheets="@css/sample.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.City_Page_Controller">
    <children>
       <HBox VBox.vgrow="NEVER">
          <children>
-            <Label prefHeight="27.0" prefWidth="251.0" text="Pagina di monitoraggio città">
+            <Label fx:id="titolo" prefHeight="27.0" prefWidth="251.0">
                <font>
                   <Font size="18.0" />
                </font>
@@ -27,25 +27,24 @@
             <Insets bottom="15.0" left="10.0" right="15.0" top="20.0" />
          </VBox.margin>
       </HBox>
-      <SplitPane dividerPositions="0.34" VBox.vgrow="ALWAYS">
-         <items>
-            <ListView fx:id="zone_list" prefHeight="200.0" prefWidth="200.0" styleClass="darkList" />
-            <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
-              <items>
-                  <TableView fx:id="table" prefHeight="539.0" prefWidth="430.0">
-                    <columns>
-                      <TableColumn fx:id="colStatus" prefWidth="57.0" text="Status" />
-                      <TableColumn fx:id="colTemperatura" prefWidth="92.0" text="Temperatura" />
-                        <TableColumn fx:id="colUmidità" prefWidth="65.0" text="Umidità" />
-                        <TableColumn fx:id="colPressione" prefWidth="74.0" text="Pressione" />
-                        <TableColumn fx:id="colLuminosità" prefWidth="87.0" text="Luminosità" />
-                        <TableColumn fx:id="colMalfunzionamenti" prefWidth="149.0" text="Malfunzionamenti" />
-                    </columns>
-                  </TableView>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
-              </items>
-            </SplitPane>
-         </items>
+      <SplitPane dividerPositions="0.63" prefHeight="160.0" prefWidth="200.0">
+        <items>
+            <TableView fx:id="table" prefHeight="137.0" prefWidth="991.0">
+              <columns>
+                <TableColumn fx:id="colNome" prefWidth="69.0" text="Nome" />
+                <TableColumn fx:id="colTemperatura" prefWidth="145.0" text="Temperatura media" />
+                  <TableColumn fx:id="colUmidità" prefWidth="134.0" text="Umidità media" />
+                  <TableColumn fx:id="colPressione" prefWidth="122.0" text="Pressione media" />
+                  <TableColumn fx:id="colLuminosità" prefWidth="156.0" text="Luminosità media" />
+              </columns>
+            </TableView>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="zonaCliccata" layoutX="26.0" layoutY="51.0" prefHeight="40.0" prefWidth="314.0" />
+               </children>
+            </AnchorPane>
+        </items>
       </SplitPane>
+      <ListView fx:id="zone_list" prefHeight="615.0" prefWidth="1000.0" styleClass="darkList" />
    </children>
 </VBox>
