@@ -5,12 +5,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class CountE {
 
-public static int conteggio (int id_zona) throws SQLException {
+public static ArrayList<Integer> conteggio (int id_zona) throws SQLException {
 	
-	int count;
+	ArrayList<Integer> list = new ArrayList<Integer>();
 	
 	Connection connessione = Database.connessioneDB();
 	String query = "CALL conta_edifici ("+id_zona+")";
@@ -22,9 +23,10 @@ public static int conteggio (int id_zona) throws SQLException {
 	
     st = connessione.prepareCall(query);
     rs = st.executeQuery(query);
-    rs.next();
-    count = rs.getInt("COUNT(*)");
-    return count;
+    while (rs.next()) {
+    list.add(rs.getInt("ID"));
+    }
+    return list;
 }
 
 }

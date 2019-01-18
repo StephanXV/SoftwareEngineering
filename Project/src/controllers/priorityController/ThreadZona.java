@@ -1,6 +1,7 @@
 package controllers.priorityController;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
@@ -10,13 +11,14 @@ import java.util.Map;
 import java.util.OptionalInt;
 import java.util.TreeMap;
 
+
 import DAO.CountE;
 import DAO.GetBuildingName;
 import DAO.GetZoneName;
 
 
 public class ThreadZona {
-    int count;
+	ArrayList<Integer> list = new ArrayList<Integer>();
     int id_zona;
     Map<String, Integer> mappa_edifici = new TreeMap<String,Integer>();
 	private int priorita_zona;
@@ -27,9 +29,9 @@ public class ThreadZona {
     
 	public Map<String,Integer> run() {
 	  try {
-		count=CountE.conteggio(id_zona);
-		  int i;
-		  for (i=1; i<=count; i++) {
+		list=CountE.conteggio(id_zona);
+		
+		  for (Integer i : list) {
 		     ThreadEdificio apri_stanze = new ThreadEdificio(i);
 	         Map<String, Integer> mappa_stanze = apri_stanze.run();
 	         int priorita_edificio = Collections.max(mappa_stanze.entrySet(), Comparator.comparingInt(Map.Entry::getValue)).getValue();

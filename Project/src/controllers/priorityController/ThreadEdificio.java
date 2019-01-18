@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.Map;
 import java.util.OptionalInt;
 import java.util.TreeMap;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -13,7 +14,7 @@ import DAO.CountS;
 
 
 public class ThreadEdificio {
-       int count;
+	   ArrayList<Integer> list = new ArrayList<Integer>();
        int id_edificio;
 	   Map<String, Integer> mappa_stanze = new TreeMap<String,Integer>();
 	   int priorita_edificio;
@@ -24,9 +25,8 @@ public class ThreadEdificio {
     
 	   public Map<String,Integer> run() {
 	      try {
-		     count=CountS.conteggio(id_edificio);
-		     int i;
-		  for (i=1; i<=count; i++) {
+		     list=DAO.CountS.conteggio(id_edificio);
+		  for (Integer i : list) {
 		     Update aggiorna = new Update(i);
 	         mappa_stanze.put(aggiorna.getRoom_name(), aggiorna.getPriorita1());
 		  }
