@@ -23,11 +23,11 @@ public class AvvioSensori {
 		
 		System.out.println("valori_associati inseriti");
 		
-		DAO.InsertUtente.registraDati(111, "Lillo", "Brillo", "324567894", "Citta", "lillo05", "utente");
+		DAO.InsertUtente.registraDati(826, "Lillo", "Brillo", "324567894", "Citta", "lillo05", "utente");
 		
 		System.out.println("utente inserito");
 		
-		DAO.InsertCitta.registraDati(1, "L'Aquila", 111);
+		DAO.InsertCitta.registraDati(1, "L'Aquila", 826);
 		
 		System.out.println("città inserita");
 		
