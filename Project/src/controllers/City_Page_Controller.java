@@ -36,13 +36,13 @@ public class City_Page_Controller {
     private TableColumn<ZonaTabella, Double> colTemperatura; // Value injected by FXMLLoader
 
     @FXML   //  fx:id="colUmidità"
-    private TableColumn<ZonaTabella, Double> colUmidità; // Value injected by FXMLLoader
+    private TableColumn<ZonaTabella, Double> colUmidita; // Value injected by FXMLLoader
 
     @FXML   //  fx:id="colPressione"
     private TableColumn<ZonaTabella, Integer> colPressione; // Value injected by FXMLLoader
 
     @FXML   //  fx:id="colLuminosità"
-    private TableColumn<ZonaTabella, Integer> colLuminosità; // Value injected by FXMLLoader
+    private TableColumn<ZonaTabella, Integer> colLuminosita; // Value injected by FXMLLoader
 
     @FXML   // fx:id="table"
     private TableView<ZonaTabella> table;
@@ -105,9 +105,9 @@ public class City_Page_Controller {
                                         ZonaTabella zt = new ZonaTabella(b.getText(), avg_zona_temp(b.getText()), avg_zona_um(b.getText()), avg_zona_pres(b.getText()), avg_zona_lum(b.getText()));
                                         colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
                                         colTemperatura.setCellValueFactory(new PropertyValueFactory<>("avg_temp"));
-                                        colUmidità.setCellValueFactory(new PropertyValueFactory<>("avg_um"));
+                                        colUmidita.setCellValueFactory(new PropertyValueFactory<>("avg_um"));
                                         colPressione.setCellValueFactory(new PropertyValueFactory<>("avg_pres"));
-                                        colLuminosità.setCellValueFactory(new PropertyValueFactory<>("avg_lum"));
+                                        colLuminosita.setCellValueFactory(new PropertyValueFactory<>("avg_lum"));
                                         ObservableList<ZonaTabella> list = FXCollections.observableArrayList(zt);
                                         table.setItems(list);
                                         notEmpty=true;

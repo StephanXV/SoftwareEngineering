@@ -11,7 +11,7 @@ public class Database {
 		try
 		{
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3308/Monitoraggio?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "08061997");
+			conn = (Connection) DriverManager.getConnection("jdbc:mysql://db4free.net:3306/monitoraggio?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false", "enrico1597", "Lexmark15");
 		}
 		catch (SQLException ex)
 		{

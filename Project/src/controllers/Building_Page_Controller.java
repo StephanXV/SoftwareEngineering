@@ -57,13 +57,13 @@ public class Building_Page_Controller {
     private TableColumn<StanzaTabella, Double> colTemperatura; // Value injected by FXMLLoader
 
     @FXML   //  fx:id="colUmidità"
-    private TableColumn<StanzaTabella, Double> colUmidità; // Value injected by FXMLLoader
+    private TableColumn<StanzaTabella, Double> colUmidita; // Value injected by FXMLLoader
 
     @FXML   //  fx:id="colPressione"
     private TableColumn<StanzaTabella, Integer> colPressione; // Value injected by FXMLLoader
 
     @FXML   //  fx:id="colLuminosità"
-    private TableColumn<StanzaTabella, Integer> colLuminosità; // Value injected by FXMLLoader
+    private TableColumn<StanzaTabella, Integer> colLuminosita; // Value injected by FXMLLoader
 
     @FXML   // fx:id="table"
     private TableView<StanzaTabella> table;
@@ -187,9 +187,9 @@ public class Building_Page_Controller {
                                         st.setNome(b.getText());
                                         colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
                                         colTemperatura.setCellValueFactory(new PropertyValueFactory<>("avg_temp"));
-                                        colUmidità.setCellValueFactory(new PropertyValueFactory<>("avg_um"));
+                                        colUmidita.setCellValueFactory(new PropertyValueFactory<>("avg_um"));
                                         colPressione.setCellValueFactory(new PropertyValueFactory<>("avg_pres"));
-                                        colLuminosità.setCellValueFactory(new PropertyValueFactory<>("avg_lum"));
+                                        colLuminosita.setCellValueFactory(new PropertyValueFactory<>("avg_lum"));
                                         ObservableList<StanzaTabella> list = FXCollections.observableArrayList(st);
                                         table.setItems(list);
                                         notEmpty=true;

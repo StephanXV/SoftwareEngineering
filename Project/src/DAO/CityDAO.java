@@ -7,8 +7,8 @@ public class CityDAO {
 
         Connection connessione = Database.connessioneDB();
 
-        String query = "select citta.nome as nome from citta join utente where citta.ID_gestore = utente.ID and\n" +
-                "\t\t\t\t\t\t\t\t\t\t\tutente.username = '" + username +"'";
+        String query = "select Citta.nome as nome from Citta join Utente where Citta.ID_gestore = Utente.ID and\n" +
+                "\t\t\t\t\t\t\t\t\t\t\tUtente.username = '" + username +"'";
 
         PreparedStatement st;
         ResultSet rs;

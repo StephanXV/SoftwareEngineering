@@ -13,7 +13,7 @@ public class TestUpdateValue {
 			
 			
 			String sql = "(select ID_ValoriAssociati from Stanza where nome = '" + nomeStanza + "');";
-			String up = "Update valori_associati Set " + variabileAmb + " = " + newValue + " where ID = " + sql + ";"; 
+			String up = "Update Valori_Associati Set " + variabileAmb + " = " + newValue + " where ID = " + sql + ";"; 
 
 			Connection connessione = Database.connessioneDB();
 			

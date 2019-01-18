@@ -7,8 +7,8 @@ public class ZoneDAO {
 
         Connection connessione = Database.connessioneDB();
 
-        String query = "select zona.nome as nome from zona join utente where zona.ID_gestore = utente.ID and\n" +
-                "\t\t\t\t\t\t\t\t\t\t\tutente.username = '" + username +"'";
+        String query = "select Zona.nome as nome from Zona join Utente where Zona.ID_gestore = Utente.ID and\n" +
+                "\t\t\t\t\t\t\t\t\t\t\tUtente.username = '" + username +"'";
 
         PreparedStatement st;
         ResultSet rs;

@@ -10,8 +10,8 @@ public class BuildingDAO {
 
         Connection connessione = Database.connessioneDB();
 
-        String query = "select edificio.nome as nome from edificio join utente where edificio.ID_gestore = utente.ID and\n" +
-                "\t\t\t\t\t\t\t\t\t\t\tutente.username = '" + username +"'";
+        String query = "select Edificio.nome as nome from Edificio join Utente where Edificio.ID_gestore = Utente.ID and\n" +
+                "\t\t\t\t\t\t\t\t\t\t\tUtente.username = '" + username +"'";
 
         PreparedStatement st;
         ResultSet rs;

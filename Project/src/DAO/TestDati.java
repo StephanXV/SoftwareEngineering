@@ -7,13 +7,15 @@ import java.sql.SQLException;
 
 public class TestDati {
 	
-	public static boolean registraDati(int sensor_id, String codice, String tipo, int stato, int stanza_id) throws SQLException {
+	      static Connection connessione = Database.connessioneDB();
+	
+	public static boolean registraDati(int sensor_id, String codice, String tipo, int stato, int stanza_id, long sending_time) throws SQLException {
 		  
 		  
-		  String query = "Insert into Sensore (ID,codice,tipo,stato,ID_Stanza) values(?,?,?,?,?);";
+		  String query = "Insert into Sensore (ID,codice,tipo,stato,ID_Stanza,sending_time) values(?,?,?,?,?,?);";
 		  String query2 = "Insert into Valore (ID_Sensore,valore_percepito) values(?,?) ";
 
-		  Connection connessione = Database.connessioneDB();
+
 		 
 		  PreparedStatement cmd = connessione.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
 		  cmd.setInt(1, sensor_id);
@@ -21,6 +23,7 @@ public class TestDati {
 		  cmd.setString(3, tipo);
 		  cmd.setInt(4,stato);
 		  cmd.setInt(5, stanza_id);
+		  cmd.setLong(6, sending_time);
 		  
 		  
 		  
@@ -42,10 +45,11 @@ public class TestDati {
 		 }
 	
 		
-		public static boolean sendDati (double last_data, int sensor_id) throws SQLException {
-		  try {
+		public static boolean sendDati (double last_data, int sensor_id, Connection connessione) throws SQLException {
+			connessione.setAutoCommit(false); 
+			try {
 		  
-		   Connection connessione = Database.connessioneDB();
+
 		   String query1 = "Update Valore Set valore_percepito = ?, time_stamp=current_timestamp where ID_Sensore = ?"; 
 		  
 		   PreparedStatement cmd = connessione.prepareStatement(query1);
@@ -54,12 +58,15 @@ public class TestDati {
 		   
 		   cmd.executeUpdate();
 		   cmd.close();
-		   connessione.close();
+		   connessione.commit();
+		   
 		   
 		   return true;
 		  } catch (Exception e) {
 		   return false;
 		  }
+			
 		 }
+		
 
 }

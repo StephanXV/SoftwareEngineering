@@ -12,8 +12,8 @@ public class SetValuesDAO {
     public static ArrayList<String> getValoriAssociati(String stanza) {
         try {
             String query = "SELECT Min_ValueTemperatura, Max_ValueTemperatura, Min_ValueUmidita, Max_ValueUmidita,\n" +
-                    "\t   Min_ValuePressione, Max_ValuePressione, Min_ValueLuminosita, Max_ValueLuminosita FROM stanza join valori_associati \n" +
-                    "where stanza.ID_ValoriAssociati = valori_associati.ID and stanza.nome = '" + stanza + "';";
+                    "\t   Min_ValuePressione, Max_ValuePressione, Min_ValueLuminosita, Max_ValueLuminosita FROM Stanza join Valori_Associati \n" +
+                    "where Stanza.ID_ValoriAssociati = Valori_Associati.ID and Stanza.nome = '" + stanza + "';";
 
             Connection connessione = Database.connessioneDB();
             PreparedStatement cmd = connessione.prepareStatement(query);
